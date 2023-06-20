@@ -5,12 +5,18 @@ arduino_port = "/dev/cu.usbmodem21401" # serial port of Arduino
 baud = 9600 # port runs at 9600 baud
 fileName = "data.csv" # name of created .csv file
 
-ser = serial.Serial(arduino_port, baud)
-print("Connected to Arduino port: " + arduino_port);
-file = open(fileName, "a");
-print("Created file");
+try:
+    ser = serial.Serial(arduino_port, baud)
+    print("Connected to Arduino port: " + arduino_port);
+    file = open(fileName, "a");
+    print("Created file");
+except Exception as e:
+    print("ERROR: ", e)
+    exit()
 
 collected_data = []
+
+print("Waiting for serial communication to begin...")
 
 while True:
     try:
