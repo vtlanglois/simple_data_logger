@@ -3,7 +3,7 @@ import csv
 
 arduino_port = "/dev/cu.usbmodem21401" # serial port of Arduino
 baud = 9600 # port runs at 9600 baud
-fileName = "data.csv"
+fileName = "data.csv" # name of created .csv file
 
 ser = serial.Serial(arduino_port, baud)
 print("Connected to Arduino port: " + arduino_port);
