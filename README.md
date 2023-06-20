@@ -16,7 +16,7 @@ In `data_logger.ino`, before collecting data the Arduino calibrates the phototra
 
 The Python script `data_collection.py` takes that output and stores it in a list. Once a endpoint is reached, the Python script writes the list to a new `.csv` file.
 
-## Data Intrepretation (Jupyter Notebooks)
+## Data Intrepretation (Jupyter Notebook)
 
 # Instructions
 
