@@ -10,8 +10,6 @@ try:
     print("Connected to Arduino port: " + arduino_port);
     file = open(fileName, "a"); # Append to a new file. If file does not exist, create a new file
     print("Created file");
-
-
 except Exception as e:
     print("ERROR: ", e)
     exit()

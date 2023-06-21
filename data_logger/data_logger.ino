@@ -1,21 +1,21 @@
 // analog input pins
-const int lightPin = A0;  // the analog input pin for the phototransistor
-const int tempPin = A1;   // the analog input pin for the temperature sensor
+const int lightPin = A0; // the analog input pin for the phototransistor
+const int tempPin = A1;  // the analog input pin for the temperature sensor
 
 int lightSensorLow = 1023;
 int lightSensorHigh = 0;
 
-const float referenceVoltage = 5.0;  // Reference voltage for the Arduino (in volts)
+const float referenceVoltage = 5.0; // Reference voltage for the Arduino (in volts)
 
-const int frequency = 1000;            // data collection frequencey in ~x milliseconds.
+const int frequency = 1 * 1000; // data collection frequencey in ~x seconds (X * 1000).
 
-float temperature;  // the recorded temperature
-int light;        // the recorded light level
-float voltage;      // the voltage from a sensor (phototransistor or temperature sensor)
-int sensorValue;    // the value from a sensor (phototransistor or temperature sensor)
+float temperature; // the recorded temperature
+int light;         // the recorded light level
+float voltage;     // the voltage from a sensor (phototransistor or temperature sensor)
+int sensorValue;   // the value from a sensor (phototransistor or temperature sensor)
 
-
-void setup() {
+void setup()
+{
   // open serial communication
   Serial.begin(9600);
   // set up pins
@@ -23,22 +23,26 @@ void setup() {
   // pinMode(tempPin, INPUT);
 
   // setup the light sensor analog values
-  while (millis() < 10000) {
+  while (millis() < 10000)
+  {
     sensorValue = analogRead(lightPin);
-    if(sensorValue > lightSensorHigh) {
+    if (sensorValue > lightSensorHigh)
+    {
       lightSensorHigh = sensorValue;
-    } 
-    if (sensorValue < lightSensorLow) {
+    }
+    if (sensorValue < lightSensorLow)
+    {
       lightSensorLow = sensorValue;
     }
   }
-
+  
+  Serial.print("time,");
   Serial.print("temp,");
   Serial.println("light");
-
 }
 
-void loop() {
+void loop()
+{
   // get temperature data
   sensorValue = analogRead(tempPin);
   // Serial.print("TEMP: sensor value: ");
@@ -64,6 +68,8 @@ void loop() {
   // Serial.print(", ");
   // Serial.print(lightSensorHigh);
 
+  Serial.print(millis()/1000);
+  Serial.print(",");
   Serial.print(temperature);
   Serial.print(",");
   Serial.println(light);
